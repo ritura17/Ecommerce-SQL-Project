@@ -1,3 +1,7 @@
+drop Database ecomerce_db;
+show databases;
+show tables;
+use ecomerce_db;
 select * from
 categories
 order by category_id asc;

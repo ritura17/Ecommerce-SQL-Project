@@ -18,9 +18,11 @@ CREATE TABLE customers (
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     phone VARCHAR(15) UNIQUE,
-    city VARCHAR(50),
-    state VARCHAR(50),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    city VARCHAR(50) NOT NULL,
+    state VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Products Table
@@ -28,8 +30,10 @@ CREATE TABLE products (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(100) NOT NULL,
     category_id INT NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
-    stock INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL CHECK (price > 0),
+    stock INT NOT NULL CHECK (stock >= 0),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
     FOREIGN KEY (category_id)
         REFERENCES categories(category_id)
 );
