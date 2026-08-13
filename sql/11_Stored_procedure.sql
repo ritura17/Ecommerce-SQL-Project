@@ -1,15 +1,10 @@
--- ==========================================================
 -- E-Commerce SQL Project
 -- File: 11_stored_procedures.sql
 -- Topic: Stored Procedures
--- ==========================================================
 
 USE ecomerce_db;
 
-
--- ==========================================================
 -- 1. Get all products
--- ==========================================================
 
 DROP PROCEDURE IF EXISTS get_all_products;
 
@@ -25,10 +20,7 @@ ORDER BY product_name;
 
 CALL get_all_products();
 
-
--- ==========================================================
 -- 2. Get product by ID
--- ==========================================================
 
 DROP PROCEDURE IF EXISTS get_product_by_id;
 
@@ -46,10 +38,7 @@ WHERE p.product_id = p_product_id;
 
 CALL get_product_by_id(1);
 
-
--- ==========================================================
 -- 3. Get customer orders
--- ==========================================================
 
 DROP PROCEDURE IF EXISTS get_customer_orders;
 
@@ -65,10 +54,7 @@ ORDER BY o.order_date DESC;
 
 CALL get_customer_orders(1);
 
-
--- ==========================================================
 -- 4. Get products by category
--- ==========================================================
 
 DROP PROCEDURE IF EXISTS get_products_by_category;
 
@@ -84,10 +70,7 @@ ORDER BY p.price DESC;
 
 CALL get_products_by_category(1);
 
-
--- ==========================================================
 -- 5. Get low-stock products
--- ==========================================================
 
 DROP PROCEDURE IF EXISTS get_low_stock_products;
 
@@ -103,10 +86,7 @@ ORDER BY stock ASC;
 
 CALL get_low_stock_products(20);
 
-
--- ==========================================================
 -- 6. Search products by name
--- ==========================================================
 
 DROP PROCEDURE IF EXISTS search_products;
 
@@ -122,10 +102,7 @@ ORDER BY product_name;
 
 CALL search_products('Laptop');
 
-
--- ==========================================================
 -- 7. Get orders by status
--- ==========================================================
 
 DROP PROCEDURE IF EXISTS get_orders_by_status;
 
@@ -145,10 +122,7 @@ ORDER BY o.order_date DESC;
 
 CALL get_orders_by_status('Delivered');
 
-
--- ==========================================================
 -- 8. Show all stored procedures
--- ==========================================================
 
 SHOW PROCEDURE STATUS
 WHERE Db = DATABASE();

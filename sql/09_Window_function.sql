@@ -1,15 +1,10 @@
--- ==========================================================
 -- E-Commerce SQL Project
 -- File: 09_window_functions.sql
 -- Topic: Window Functions
--- ==========================================================
 
 USE ecomerce_db;
 
-
--- ==========================================================
 -- 1. Rank products by price
--- ==========================================================
 
 SELECT
     product_id,
@@ -18,10 +13,7 @@ SELECT
     RANK() OVER (ORDER BY price DESC) AS price_rank
 FROM products;
 
-
--- ==========================================================
 -- 2. Dense rank products by price
--- ==========================================================
 
 SELECT
     product_id,
@@ -30,10 +22,7 @@ SELECT
     DENSE_RANK() OVER (ORDER BY price DESC) AS price_rank
 FROM products;
 
-
--- ==========================================================
 -- 3. Row number for products by price
--- ==========================================================
 
 SELECT
     product_id,
@@ -42,10 +31,7 @@ SELECT
     ROW_NUMBER() OVER (ORDER BY price DESC) AS row_num
 FROM products;
 
-
--- ==========================================================
 -- 4. Rank customers by total spending
--- ==========================================================
 
 WITH customer_spending AS (
     SELECT
@@ -68,10 +54,7 @@ FROM customers c
 JOIN customer_spending cs
     ON c.customer_id = cs.customer_id;
 
-
--- ==========================================================
 -- 5. Rank products within each category
--- ==========================================================
 
 SELECT
     p.product_id,
@@ -84,10 +67,7 @@ SELECT
     ) AS category_rank
 FROM products p;
 
-
--- ==========================================================
 -- 6. Top product in each category
--- ==========================================================
 
 WITH ranked_products AS (
     SELECT
@@ -111,10 +91,7 @@ JOIN categories c
     ON rp.category_id = c.category_id
 WHERE rp.product_rank = 1;
 
-
--- ==========================================================
 -- 7. Running total of order revenue
--- ==========================================================
 
 SELECT
     order_id,
@@ -125,10 +102,7 @@ SELECT
     ) AS running_revenue
 FROM orders;
 
-
--- ==========================================================
 -- 8. Average order amount alongside each order
--- ==========================================================
 
 SELECT
     order_id,
@@ -137,10 +111,7 @@ SELECT
     AVG(total_amount) OVER () AS average_order_amount
 FROM orders;
 
-
--- ==========================================================
 -- 9. Difference between order amount and average order amount
--- ==========================================================
 
 SELECT
     order_id,
@@ -151,10 +122,7 @@ SELECT
         AVG(total_amount) OVER () AS difference_from_average
 FROM orders;
 
-
--- ==========================================================
 -- 10. Customer order sequence
--- ==========================================================
 
 SELECT
     customer_id,
@@ -167,10 +135,7 @@ SELECT
     ) AS customer_order_number
 FROM orders;
 
-
--- ==========================================================
 -- 11. Previous order amount for each customer
--- ==========================================================
 
 SELECT
     customer_id,
@@ -183,10 +148,7 @@ SELECT
     ) AS previous_order_amount
 FROM orders;
 
-
--- ==========================================================
 -- 12. Next order amount for each customer
--- ==========================================================
 
 SELECT
     customer_id,
@@ -199,10 +161,7 @@ SELECT
     ) AS next_order_amount
 FROM orders;
 
-
--- ==========================================================
 -- 13. Compare current order with previous order
--- ==========================================================
 
 SELECT
     customer_id,
@@ -221,10 +180,7 @@ SELECT
         ) AS difference
 FROM orders;
 
-
--- ==========================================================
 -- 14. Total revenue by category with category ranking
--- ==========================================================
 
 WITH category_revenue AS (
     SELECT
@@ -246,10 +202,7 @@ FROM category_revenue cr
 JOIN categories c
     ON cr.category_id = c.category_id;
 
-
--- ==========================================================
 -- 15. Percentage contribution of each product to total revenue
--- ==========================================================
 
 WITH product_revenue AS (
     SELECT

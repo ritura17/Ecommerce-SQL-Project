@@ -1,15 +1,10 @@
--- ==========================================================
 -- E-Commerce SQL Project
 -- File: 07_subqueries.sql
 -- Topic: Subqueries
--- ==========================================================
 
 USE ecomerce_db;
 
-
--- ==========================================================
 -- 1. Products more expensive than the average product price
--- ==========================================================
 
 SELECT
     product_id,
@@ -21,10 +16,7 @@ WHERE price > (
     FROM products
 );
 
-
--- ==========================================================
 -- 2. Find the most expensive product
--- ==========================================================
 
 SELECT
     product_id,
@@ -36,10 +28,7 @@ WHERE price = (
     FROM products
 );
 
-
--- ==========================================================
 -- 3. Find the cheapest product
--- ==========================================================
 
 SELECT
     product_id,
@@ -51,10 +40,7 @@ WHERE price = (
     FROM products
 );
 
-
--- ==========================================================
 -- 4. Customers who have placed at least one order
--- ==========================================================
 
 SELECT
     customer_id,
@@ -67,10 +53,7 @@ WHERE customer_id IN (
     FROM orders
 );
 
-
--- ==========================================================
 -- 5. Customers who have NOT placed any order
--- ==========================================================
 
 SELECT
     customer_id,
@@ -83,10 +66,7 @@ WHERE customer_id NOT IN (
     FROM orders
 );
 
-
--- ==========================================================
 -- 6. Products that have been ordered
--- ==========================================================
 
 SELECT
     product_id,
@@ -98,10 +78,7 @@ WHERE product_id IN (
     FROM order_items
 );
 
-
--- ==========================================================
 -- 7. Products that have never been ordered
--- ==========================================================
 
 SELECT
     product_id,
@@ -113,10 +90,7 @@ WHERE product_id NOT IN (
     FROM order_items
 );
 
-
--- ==========================================================
 -- 8. Customers whose total spending is above average
--- ==========================================================
 
 SELECT
     c.customer_id,
@@ -149,10 +123,7 @@ WHERE (
     ) AS customer_spending
 );
 
-
--- ==========================================================
 -- 9. Orders whose total amount is greater than average order amount
--- ==========================================================
 
 SELECT
     order_id,
@@ -165,10 +136,7 @@ WHERE total_amount > (
     FROM orders
 );
 
-
--- ==========================================================
 -- 10. Find customers who placed the highest-value order
--- ==========================================================
 
 SELECT
     c.customer_id,

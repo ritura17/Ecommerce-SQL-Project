@@ -1,16 +1,11 @@
--- ==========================================================
 -- E-Commerce SQL Project
 -- File: 10_views.sql
 -- Topic: SQL Views
--- ==========================================================
 
 USE ecomerce_db;
 show databases;
 
-
--- ==========================================================
 -- 1. View: Product details with category
--- ==========================================================
 
 CREATE OR REPLACE VIEW product_details AS
 SELECT
@@ -28,10 +23,7 @@ JOIN categories c
 SELECT *
 FROM product_details;
 
-
--- ==========================================================
 -- 2. View: Customer order details
--- ==========================================================
 
 CREATE OR REPLACE VIEW customer_orders AS
 SELECT
@@ -52,10 +44,7 @@ JOIN orders o
 SELECT *
 FROM customer_orders;
 
-
--- ==========================================================
 -- 3. View: Complete order details
--- ==========================================================
 
 CREATE OR REPLACE VIEW complete_order_details AS
 SELECT
@@ -88,10 +77,7 @@ LEFT JOIN payments pay
 SELECT *
 FROM complete_order_details;
 
-
--- ==========================================================
 -- 4. View: Product revenue
--- ==========================================================
 
 CREATE OR REPLACE VIEW product_revenue AS
 SELECT
@@ -112,10 +98,7 @@ SELECT *
 FROM product_revenue
 ORDER BY total_revenue DESC;
 
-
--- ==========================================================
 -- 5. View: Customer spending
--- ==========================================================
 
 CREATE OR REPLACE VIEW customer_spending AS
 SELECT
@@ -143,10 +126,7 @@ SELECT *
 FROM customer_spending
 ORDER BY total_spending DESC;
 
-
--- ==========================================================
 -- 6. View: Low stock products
--- ==========================================================
 
 CREATE OR REPLACE VIEW low_stock_products AS
 SELECT
@@ -163,10 +143,7 @@ SELECT *
 FROM low_stock_products
 ORDER BY stock ASC;
 
-
--- ==========================================================
 -- 7. View: Delivered orders
--- ==========================================================
 
 CREATE OR REPLACE VIEW delivered_orders AS
 SELECT
@@ -186,10 +163,7 @@ WHERE o.order_status = 'Delivered';
 SELECT *
 FROM delivered_orders;
 
-
--- ==========================================================
 -- 8. View: Category revenue
--- ==========================================================
 
 CREATE OR REPLACE VIEW category_revenue AS
 SELECT
@@ -211,18 +185,12 @@ SELECT *
 FROM category_revenue
 ORDER BY total_revenue DESC;
 
-
--- ==========================================================
 -- 9. Show all views in the database
--- ==========================================================
 
 SHOW FULL TABLES
 WHERE Table_type = 'VIEW';
 
-
--- ==========================================================
 -- 10. Example: Query a view like a normal table
--- ==========================================================
 
 SELECT
     first_name,
